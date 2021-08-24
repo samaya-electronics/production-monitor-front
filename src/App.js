@@ -1,5 +1,6 @@
 import "../node_modules/bulma/css/bulma.min.css";
 import "./App.css";
+
 import globalContext from "./context/global-context";
 import { Switch } from "react-router";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -19,14 +20,7 @@ function App() {
   const fetchGlobalContext = useContext(globalContext);
   const globalContextLocal= useMemo(()=>fetchGlobalContext,[fetchGlobalContext]);
   const pageBody = globalContextLocal.authorization.token ? (<div style={{margin:'auto'}}>
-
-  </div>) : null;
-  console.log(globalContextLocal,pageBody);
-  return (
-      <BrowserRouter>
-        <Nav />
-        
-        <Switch>
+  <Switch>
   <Route exact path="/roles" ><Roles/></Route>
   <Route exact path="/floors" ><Floors/></Route>
   <Route exact path="/lines" ><Lines/></Route>
@@ -38,6 +32,12 @@ function App() {
   <Route exact path="/user-lines" ><UserLines/></Route>
   <Route exact path="/line-controls" ><LineControl/></Route>
   </Switch>
+  </div>) : null;
+  console.log(globalContextLocal,pageBody);
+  return (
+      <BrowserRouter>
+        <Nav />
+        {pageBody}
       </BrowserRouter>
   );
 }
