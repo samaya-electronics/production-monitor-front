@@ -15,6 +15,7 @@ import UserLinks  from "./views/user-link/user-link";
 import UserLines from "./views/user-line/user-line";
 import React, { useContext, useMemo } from "react";
 import LineControl from "./views/line-controls/line-controls";
+import Monitor from "./views/monitor/monitor";
 
 function App() {
   const fetchGlobalContext = useContext(globalContext);
@@ -31,6 +32,7 @@ function App() {
   <Route exact path="/user-links" ><UserLinks/></Route>
   <Route exact path="/user-lines" ><UserLines/></Route>
   <Route exact path="/line-controls" ><LineControl/></Route>
+  <Route exact path="/monitor" ><Monitor/></Route>
   </Switch>
   </div>) : null;
   console.log(globalContextLocal,pageBody);

@@ -1,0 +1,7 @@
+.line-card-no-scroll{
+    overflow:'none' !important;
+}
+
+.fullHeight{
+    height: 100% !important;
+}

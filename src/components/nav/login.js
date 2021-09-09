@@ -9,7 +9,7 @@ const Login = (props) => {
 
   const globalContextLocal = useContext(globalContext);
   const [credentials, setCredendials] = useState(initialCredentials);
-
+  console.log(globalContextLocal);
   const handleLogin = (event) => {
       
     event.preventDefault();
@@ -31,6 +31,7 @@ const Login = (props) => {
                     userName:body.userName,
                     links:body.links
                 })
+                console.log(globalContextLocal);
             }
         })
         
