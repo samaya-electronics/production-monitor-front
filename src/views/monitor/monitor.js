@@ -3,7 +3,9 @@ import { Fragment, useCallback, useEffect, useState } from "react";
 import Panel from "../../components/ui/containers/panel";
 import LineCard from "./line-card";
 import FilterCart from "./filter-card";
+
 import ShowLineStoppages from "../line-controls/show-line-stoppages";
+
 const Monitor = (props) => {
   const [linesData, setLinesData] = useState([]);
   const [timeFrameValue, setTimeFrameValue] = useState("week");
@@ -30,6 +32,7 @@ const Monitor = (props) => {
     const { value } = event.target;
     setTimeFrameValue(value);
   };
+
   const fetchData = useCallback(async (url, config, setData) => {
     let response;
     try {
@@ -76,6 +79,7 @@ const Monitor = (props) => {
     getLines();
     initialSocket();
   }, [getLines, initialSocket]);
+
   const idleCard = linesData.idle && (
     <Panel
       label={
@@ -93,7 +97,7 @@ const Monitor = (props) => {
     >
       <div className="columns is-multiline">
         {showIdle==="yes" && linesData.idle.map((item) => (
-          <div className="column is-1">
+          <div className="column is-2">
             <h3
               key={item.Line.id}
               title={item.Line.name}
@@ -107,8 +111,10 @@ const Monitor = (props) => {
       </div>
     </Panel>
   );
+
   return (
     <Fragment>
+
       <FilterCart
         timeFrameValue={timeFrameValue}
         showIdle={showIdle}
@@ -118,15 +124,15 @@ const Monitor = (props) => {
         showFailingOnChangeHandler={showFailingOnChangeHandler}
         showStoppagesOnChangeHandler={showStoppagesOnChangeHandler}
         showStoppages={showStoppages}
-
-
       />
+
       <div style={{ padding: "10px" }}>{idleCard}</div>
+
       <div className="columns is-multiline">
         {linesData?.onSchedule
           ? linesData.onSchedule.map((item, index) => {
               return (
-                <div className="column is-1">
+                <div className="column is-2">
                   <LineCard lineData={item} />
                 </div>
               );
@@ -134,8 +140,10 @@ const Monitor = (props) => {
           : null}
         ;
       </div>
+      
     </Fragment>
   );
+
 };
 
 export default Monitor;
